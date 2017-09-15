@@ -34,12 +34,13 @@ export class StartupService {
 
                         this.settingService.setApp(res.app);
                         this.settingService.setUser(res.user);
+                        this.settingService.setHostEcm(res.hostEcm);
                         // 设置ＡＣＬ权限为全量
                         this.aclService.setFull(true);
                         // 初始化菜单
                         this.menuService.add(res.menu);
                         // 调整语言
-                        this.tr.use('en');
+                        this.tr.use('zh-CN');
                     })
                     .catch((err: any) => {
                         return Promise.resolve(null);

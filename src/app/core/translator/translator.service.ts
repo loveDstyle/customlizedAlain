@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { SettingsService } from "../services/settings.service";
+import { SettingsService } from '../services/settings.service';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class TranslatorService {
@@ -26,6 +27,10 @@ export class TranslatorService {
 
     get langs() {
         return this._langs;
+    }
+
+    get(key: string | string[], params: Object = null): Observable<string | any> {
+        return this.translate.get(key, params);
     }
 
 }

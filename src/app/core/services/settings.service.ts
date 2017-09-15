@@ -37,6 +37,8 @@ export class SettingsService {
         year: (new Date()).getFullYear()
     };
 
+    hostEcm: string;
+
     user: User = {};
 
     private _layout: Layout = null;
@@ -70,6 +72,10 @@ export class SettingsService {
 
     setUser(val: User) {
         this.user = Object.assign(this.user, val);
+    }
+
+    setHostEcm(val: string) {
+        this.hostEcm = val;
     }
 
     constructor(private local: LocalStorageService) { }

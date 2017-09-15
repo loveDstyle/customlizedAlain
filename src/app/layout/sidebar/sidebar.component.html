@@ -6,13 +6,13 @@
             </div>
             <div nz-col [nzSpan]="16" class="point">
                 {{settings.user.name}}
-                <p class="text-grey">{{settings.user.email}}</p>
+                <p class="text-grey">{{settings.user.username}}</p>
             </div>
         </div>
         <ul nz-menu>
             <li nz-menu-item (click)="show('profile')">{{ 'profile' | translate }}</li>
             <li nz-menu-item (click)="show('settings')">{{ 'settings' | translate }}</li>
-            <li nz-menu-item (click)="show('logout')">{{ 'logout' | translate }}</li>
+            <li nz-menu-item (click)="logout()">{{ 'logout' | translate }}</li>
         </ul>
     </nz-dropdown>
     <ul nz-menu nzMode="inline" nzTheme="light">

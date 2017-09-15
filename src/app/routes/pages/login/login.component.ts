@@ -1,20 +1,29 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { SettingsService } from "@core/services/settings.service";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SettingsService } from '@core/services/settings.service';
+import { LoginService } from './login.service';
+import { LocalStorageService } from 'angular-web-storage';
+import { Ticket } from './login.model';
+import {ShareService} from "@core/services/share.service";
 
 @Component({
   selector: 'app-pages-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+    providers: [LoginService]
 })
 export class LoginComponent {
   valForm: FormGroup;
 
-  constructor(public settings: SettingsService, fb: FormBuilder, private router: Router) {
+  constructor(public settings: SettingsService,
+              private fb: FormBuilder,
+              private router: Router,
+              private loginService: LoginService,
+            private shareService: ShareService) {
     this.valForm = fb.group({
-      email: [null, Validators.compose([Validators.required, Validators.email])],
-      password: [null, Validators.required],
+      username: [null, Validators.compose([Validators.required])],
+      password: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
       remember_me: [null]
     });
   }
@@ -24,9 +33,16 @@ export class LoginComponent {
       this.valForm.controls[i].markAsDirty();
     }
     if (this.valForm.valid) {
-      console.log('Valid!');
-      console.log(this.valForm.value);
-      this.router.navigate(['dashboard']);
+      this.loginService.login(this.valForm.controls['username'].value, this.valForm.controls['password'].value)
+          .subscribe((success: string) => {
+            this.shareService.setTicketEcm(success);
+            const lastRequestUrl = sessionStorage.getItem('redirectUrl');
+            this.router.navigateByUrl(lastRequestUrl ? lastRequestUrl : 'dashboard/v1');
+          },
+          error => {
+            console.log(error);
+          });
     }
   }
+
 }

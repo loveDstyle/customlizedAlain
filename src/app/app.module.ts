@@ -27,7 +27,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,

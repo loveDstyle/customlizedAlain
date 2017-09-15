@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NzMessageService } from "ng-zorro-antd";
 import { SettingsService } from "@core/services/settings.service";
+import { ShareService } from "@core/services/share.service";
 import { MenuService } from '@core/services/menu.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class SidebarComponent {
     constructor(
         private _message: NzMessageService,
         public menuSrv: MenuService,
-        public settings: SettingsService) {
+        public settings: SettingsService,
+        private shareService: ShareService) {
     }
 
     show(msg: string) {
@@ -21,5 +23,10 @@ export class SidebarComponent {
 
     closeMenu() {
         this.settings.setLayout('collapsed', false);
+    }
+
+    logout() {
+        this.shareService.invalidateSession();
+        this._message.success('您已登出！');
     }
 }

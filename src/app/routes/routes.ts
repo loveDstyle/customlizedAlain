@@ -7,6 +7,9 @@ import { MaintenanceComponent } from "./pages/maintenance/maintenance.component"
 import { Page404Component } from "./pages/404/404.component";
 import { Page500Component } from "./pages/500/500.component";
 import { DashboardV1Component } from "./dashboard/v1/v1.component";
+import {AuthGuardEcm} from "@core/guards/auth-guard-ecm.service";
+
+
 
 export const routes = [
     {
@@ -23,7 +26,10 @@ export const routes = [
             { path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
             { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' }
-        ]
+        ],
+        canActivate: [AuthGuardEcm],
+        canActivateChild: [AuthGuardEcm],
+        CanLoad: [AuthGuardEcm]
     },
     // 单页不包裹Layout
     { path: 'register', component: RegisterComponent },

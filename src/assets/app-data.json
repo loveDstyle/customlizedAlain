@@ -1,13 +1,14 @@
 {
     "app": {
-        "name": "Alain",
-        "description": "Ng-zorro admin panel front-end framework"
+        "name": "ZBWT",
+        "description": "ZBWT frontend r7"
     },
     "user": {
         "name": "Admin",
         "avatar": "./assets/img/zorro.svg",
-        "email": "cipchk@qq.com"
+        "username": "cipchk@qq.com"
     },
+    "hostEcm": "http://192.168.1.88:18080",
     "menu": [{
         "text": "主导航",
         "translate": "main_navigation",

@@ -16,11 +16,14 @@
       "dom"
     ],
     "baseUrl": "src/",
-    "paths": {
+      "skipLibCheck": true,
+      "paths": {
         "@shared": [ "app/shared" ],
         "@shared/*": [ "app/shared/*" ],
         "@core": [ "app/core/" ],
-        "@core/*": [ "app/core/*" ]
+        "@core/*": [ "app/core/*" ],
+        "@sysconst": [ "app/sysconst" ],
+        "@sysconst/*": ["app/sysconst/*"]
     }
   }
 }
