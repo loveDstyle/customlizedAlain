@@ -8,6 +8,7 @@ import { Page404Component } from "./pages/404/404.component";
 import { Page500Component } from "./pages/500/500.component";
 import { DashboardV1Component } from "./dashboard/v1/v1.component";
 import {AuthGuardEcm} from "@core/guards/auth-guard-ecm.service";
+import { MyDocumentComponent } from './documentlist/my-document/my-document.component';
 
 
 
@@ -18,6 +19,7 @@ export const routes = [
         children: [
             { path: '', redirectTo: 'dashboard/v1', pathMatch: 'full' },
             { path: 'dashboard/v1', component: DashboardV1Component },
+            { path: 'my-document/:id', component: MyDocumentComponent },
             { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' },
             { path: 'elements', loadChildren: './elements/elements.module#ElementsModule' },
             { path: 'forms', loadChildren: './forms/forms.module#FormsModule' },
@@ -27,9 +29,7 @@ export const routes = [
             { path: 'logics', loadChildren: './logics/logics.module#LogicsModule' },
             { path: 'extras', loadChildren: './extras/extras.module#ExtrasModule' }
         ],
-        canActivate: [AuthGuardEcm],
-        canActivateChild: [AuthGuardEcm],
-        CanLoad: [AuthGuardEcm]
+        canActivateChild: [AuthGuardEcm]
     },
     // 单页不包裹Layout
     { path: 'register', component: RegisterComponent },

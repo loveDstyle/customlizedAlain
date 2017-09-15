@@ -37,7 +37,7 @@ export class LoginComponent {
           .subscribe((success: string) => {
             this.shareService.setTicketEcm(success);
             const lastRequestUrl = sessionStorage.getItem('redirectUrl');
-            this.router.navigateByUrl(lastRequestUrl ? lastRequestUrl : 'dashboard/v1');
+            this.router.navigateByUrl('my-document/-my-'); // lastRequestUrl ? lastRequestUrl :
           },
           error => {
             console.log(error);
